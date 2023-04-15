@@ -1,3 +1,3 @@
-from . import user
-from . import item
-from . import category
+from . import users
+from . import items
+from . import categories
