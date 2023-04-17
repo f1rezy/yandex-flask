@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 
-import items_resources
+import items_api
 from data import db_session
 
 app = Flask(__name__)
@@ -11,9 +11,9 @@ api = Api(app)
 
 def main():
     db_session.global_init("db/database.db")
-    api.add_resource(items_resources.ItemResource, '/api/items/<int:item_id>')
-    api.add_resource(items_resources.ItemsListResource, '/api/items')
-    api.add_resource(items_resources.ItemsCategoryResource, '/api/items/category/<int:category_id>')
+    api.add_resource(items_api.ItemResource, '/api/items/<int:item_id>')
+    api.add_resource(items_api.ItemsListResource, '/api/items')
+    api.add_resource(items_api.ItemsCategoryResource, '/api/items/category/<int:category_id>')
     app.run()
 
 
