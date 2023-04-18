@@ -25,3 +25,11 @@ img {
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+.main {
+  width 100%;
+}
+
+.main > img{
+    width: 100%;
+}
