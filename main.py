@@ -17,7 +17,7 @@ def main():
 def index():
     db_sess = db_session.create_session()
     items = db_sess.query(Items).all()
-    return render_template("index.html", title="Главная", items=items)
+    return render_template("index.html", title="Главная | Geekboards", items=items)
 
 
 if __name__ == '__main__':

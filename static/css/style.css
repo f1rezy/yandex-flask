@@ -26,10 +26,7 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-.main {
-  width 100%;
-}
-
-.main > img{
-    width: 100%;
+.row .col{
+  margin: 0;
+  padding: 0;
 }

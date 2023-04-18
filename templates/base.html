@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -18,16 +19,48 @@
 <header>
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
-                <a href="#">Наше приложение</a>
-                <a class="waves-effect waves-teal btn-flat"><i class="material-icons up">accessibility</i></a>
-
+            <div class="nav-wrapper grey darken-4">
+                <a href="#" class="brand-logo">GEEKBOARDS</a>
+                <a class="waves-effect waves-teal btn-flat"></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="">Клавиатуры</a></li>
+                    <li><a href="">Мыши</a></li>
+                    <li><a href="">Аксессуары</a></li>
+                    <li><a href="">Инструменты и детали</a></li>
+                    <li><a href=""><i class="material-icons">add_shopping_cart</i></a></li>
+                    <li><a href=""><i class="material-icons">account_box</i></a></li>
+                </ul>
             </div>
         </nav>
     </div>
 </header>
-<main role="main" class="container">
+<main role="main">
     {% block content %}{% endblock %}
 </main>
+<footer class="page-footer grey darken-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2023 GEEKBOARDS
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
 </body>
 </html>
