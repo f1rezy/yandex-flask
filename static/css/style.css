@@ -24,9 +24,27 @@ img {
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: #DCDCDC;
 }
 
 .row .col{
   margin: 0;
   padding: 0;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0 60px;
+  column-gap: 40px;
+  row-gap: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-wrap: nowrap;
+  background-color: white;
+  border-radius: 20px;
 }

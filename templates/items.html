@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Добавление товара</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="input-field">
+            {{ form.title.label }}<br>
+            {{ form.title(class="form-control") }}<br>
+            {% for error in form.title.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="input-field">
+            {{ form.description.label }}<br>
+            {{ form.description(class="form-control") }}<br>
+            {% for error in form.description.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="input-field">
+            {{ form.category_id.label }}<br>
+            {{ form.category_id(class="form-control") }}<br>
+            {% for error in form.category_id.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="file-field input-field">
+            {{ form.image.label }}<br>
+            {{ form.image(class="form-control", type="file") }}<br>
+            {% for error in form.image.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="input-field">
+            {{ form.price.label }}<br>
+            {{ form.price(class="form-control") }}<br>
+            {% for error in form.price.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="input-field">
+            {{ form.availability.label }}<br>
+            {{ form.availability(class="form-control") }}<br>
+            {% for error in form.availability.errors %}
+                <p>
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </div>
+        <p style="margin: 25px 0 50px 0;">{{ form.submit(type="submit", class="waves-effect waves-light btn") }}</p>
+        {{message}}
+    </form>
+</div>
+{% endblock %}
