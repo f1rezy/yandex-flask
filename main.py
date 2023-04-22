@@ -1,13 +1,16 @@
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_restful import Api
+from werkzeug.utils import secure_filename
 from data import db_session
 from data.users import User
 from data.items import Items
 from data.categories import Categories
 from forms.user import RegisterForm, LoginForm
+from forms.items import ItemsForm
 
 import datetime
+import os
 import items_api
 
 app = Flask(__name__)
@@ -23,6 +26,26 @@ def main():
     api.add_resource(items_api.ItemResource, '/api/items/<int:item_id>')
     api.add_resource(items_api.ItemsListResource, '/api/items')
     api.add_resource(items_api.ItemsCategoryResource, '/api/items/category/<int:category_id>')
+
+    # db_sess = db_session.create_session()
+    # category = db_sess.query(Categories).filter(Categories.id == 1).first()
+    # item = Items()
+    # item.title = "Zoom75 KIT Tri-Mode Essential Edition"
+    # item.description = "Zoom75 KIT Tri-Mode EE — база для сборки, которая позволяет создать беспроводную хотсвап клавиатуру своей мечты почти с нуля: здесь нет кейкапов и переключателей для того, чтобы вы могли выбрать идеальную комбинацию, а широкие возможности кастомизации помогут создать уникальное устройство.\n" \
+    #                    "Серия Essential Edition позволяет выбрать из 15 вариантов корпусов, девяти цветов ручек энкодера и утяжелителей, двух вариантов платы: с флекс катами и без.\n" \
+    #                    "Также есть беспроводная база в корпусах серии Special Edition или в лимитированном дизайне Kitsune, а еще проводная версия в черном или белом корпусе. Дополнительно можно докупить заднюю панель корпуса другого цвета."
+    # item.category_id = 1
+    # item.category = category
+    # item.image = "/static/img/zoom75-kit-3-min.jpg"
+    # item.price = 17580
+    # item.availability = 50
+
+    # db_sess.add(item)
+    # user = db_sess.query(Items).filter(Items.id == 4).first()
+    # user.image = "/static/img/zoom75-kit-3-min.jpg"
+    # db_sess.commit()
+    # for item in db_sess.query(Items).all():
+    #     print(item.id, item.category_id, item.category.category, item.price)
     app.run()
 
 
@@ -84,6 +107,32 @@ def login():
 def logout():
     logout_user()
     return redirect("/")
+
+
+@app.route('/items',  methods=['GET', 'POST'])
+def add_item():
+    form = ItemsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        item = Items()
+        item.title = form.title.data
+        item.description = form.description.data
+        item.category_id = form.category_id.data
+        category = db_sess.query(Categories).filter(Categories.id == form.category_id.data).first()
+        item.category = category
+        f = form.image.data
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(
+            app.instance_path, 'static/img', filename
+        ))
+        item.image = f"/static/img/{filename}"
+        item.price = form.price.data
+        item.availability = form.availability.data
+        db_sess.add(item)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('items.html', title='Добавление товара',
+                           form=form)
 
 
 if __name__ == '__main__':
