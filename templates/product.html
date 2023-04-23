@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row product">
+    <div class="col s6">
+        <img class="item_img" src={{item.image}}>
+    </div>
+    <div class="col s5" style="margin-left: 30px;">
+        <h1 class="title">{{item.title}}</h1>
+        <h2 style="font-size: 30px; margin: 25px 0 10px 0;">Описание</h2>
+        <span>{{item.description}}</span>
+        <div style="margin-top: 30px;">
+            <div>{{item.price}} ₽</div>
+            {% if item.availability > 0 %}
+                <div>В наличии</div>
+            {% else %}
+                <div>Нет в наличии</div>
+            {% endif %}
+            {% if item.availability > 0 %}
+                <a class="waves-effect waves-light btn-large blue cart-button"><i class="material-icons left">add_shopping_cart</i>В корзину</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
