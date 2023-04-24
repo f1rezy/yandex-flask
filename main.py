@@ -8,6 +8,7 @@ from data.items import Items
 from data.categories import Categories
 from forms.user import RegisterForm, LoginForm
 from forms.items import ItemsForm
+from waitress import serve
 
 import datetime
 import os
@@ -26,29 +27,7 @@ def main():
     api.add_resource(items_api.ItemResource, '/api/items/<int:item_id>')
     api.add_resource(items_api.ItemsListResource, '/api/items')
     api.add_resource(items_api.ItemsCategoryResource, '/api/items/category/<int:category_id>')
-
-    # db_sess = db_session.create_session()
-    # category = db_sess.query(Categories).filter(Categories.id == 1).first()
-    # item = Items()
-    # item.title = "Zoom75 KIT Tri-Mode Essential Edition"
-    # item.description = "Zoom75 KIT Tri-Mode EE — база для сборки, которая позволяет создать беспроводную хотсвап клавиатуру своей мечты почти с нуля: здесь нет кейкапов и переключателей для того, чтобы вы могли выбрать идеальную комбинацию, а широкие возможности кастомизации помогут создать уникальное устройство.\n" \
-    #                    "Серия Essential Edition позволяет выбрать из 15 вариантов корпусов, девяти цветов ручек энкодера и утяжелителей, двух вариантов платы: с флекс катами и без.\n" \
-    #                    "Также есть беспроводная база в корпусах серии Special Edition или в лимитированном дизайне Kitsune, а еще проводная версия в черном или белом корпусе. Дополнительно можно докупить заднюю панель корпуса другого цвета."
-    # item.category_id = 1
-    # item.category = category
-    # item.image = "/static/img/zoom75-kit-3-min.jpg"
-    # item.price = 17580
-    # item.availability = 50
-
-    # db_sess.add(item)
-    # user = db_sess.query(Items).filter(Items.id == 4).first()
-    # user.image = "/static/img/zoom75-kit-3-min.jpg"
-    # db_sess.commit()
-    # for category in db_sess.query(Categories).all():
-    #     category.category = category.category.lower()
-    #     db_sess.commit()
-    #     print(category.id, category.category)
-    app.run()
+    serve(app, host="0.0.0.0", port=8080)
 
 
 @app.route("/")
@@ -96,7 +75,7 @@ def login():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
+            login_user(user)
             return redirect("/")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
