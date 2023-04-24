@@ -1,14 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="col s12"><img src="/static/img/varmilo-mendozae.jpg"/></div>
-    <div class="col s6"><img src="/static/img/Shurikey-Saizo.jpeg"/></div>
-    <div class="col s6"><img src="/static/img/NuPhy-Halo65.jpeg"/></div>
-    <div class="col s4"><img src="/static/img/zoom75-kit-3-min.jpg"/></div>
-    <div class="col s4"><img src="/static/img/Shurikey-Saizo.jpeg"/></div>
-    <div class="col s4"><img src="/static/img/Shurikey-Saizo.jpeg"/></div>
-</div>
+<h1 style="text-align: center;">{{ category }}</h1>
 <div class="items">
     {% for item in items%}
     <div class="card">

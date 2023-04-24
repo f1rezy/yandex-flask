@@ -44,15 +44,17 @@ def main():
     # user = db_sess.query(Items).filter(Items.id == 4).first()
     # user.image = "/static/img/zoom75-kit-3-min.jpg"
     # db_sess.commit()
-    # for item in db_sess.query(Items).all():
-    #     print(item.id, item.category_id, item.category.category, item.price)
+    # for category in db_sess.query(Categories).all():
+    #     category.category = category.category.lower()
+    #     db_sess.commit()
+    #     print(category.id, category.category)
     app.run()
 
 
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
-    items = db_sess.query(Items).all()
+    items = db_sess.query(Items).all()[:15]
     return render_template("index.html", title="Главная | Geekboards", items=items)
 
 
@@ -133,6 +135,30 @@ def add_item():
         return redirect('/')
     return render_template('items.html', title='Добавление товара',
                            form=form)
+
+
+@app.route("/category/<category>")
+def categories(category):
+    db_sess = db_session.create_session()
+    collection = db_sess.query(Categories).filter(Categories.category == category).first()
+    items = db_sess.query(Items).filter(Items.category_id == collection.id)
+    return render_template("category.html", title=category, category=category, items=items)
+
+
+@app.route("/product/<product>")
+def product(product):
+    product_title = " ".join(product.split("-"))
+    db_sess = db_session.create_session()
+    for i in db_sess.query(Items).all():
+        if i.title.lower() == product_title:
+            item = i
+    item_title = item.title
+    return render_template("product.html", title=item_title, item=item)
+
+
+@app.route("/cart")
+def cart():
+    return render_template("cart.html", title="Корзина")
 
 
 if __name__ == '__main__':

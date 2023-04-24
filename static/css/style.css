@@ -48,3 +48,15 @@ body {
   background-color: white;
   border-radius: 20px;
 }
+
+.product {
+  margin: 60px 40px 100px 40px;
+}
+
+.product-name {
+  font-size: 36px;
+}
+
+.item_img {
+  border-radius: 20px;
+}
