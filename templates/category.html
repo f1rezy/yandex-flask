@@ -8,8 +8,13 @@
         <a href="/product/{{'-'.join(item.title.lower().split())}}">
             <img src={{item.image}}>
         </a>
-        <span style="padding-bottom: 100px;">{{item.title}}</span>
-        <span style="color: blue;">{{item.price}} ₽</span>
+        <span style="padding-bottom: 20px;">{{item.title}}</span>
+        {% if item.availability > 0 %}
+            <div>В наличии</div>
+        {% else %}
+            <div>Нет в наличии</div>
+        {% endif %}
+        <span style="color: #03a9f4;">От {{item.price}} ₽</span>
     </div>
     {% endfor %}
 </div>

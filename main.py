@@ -54,7 +54,7 @@ def main():
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
-    items = db_sess.query(Items).all()
+    items = db_sess.query(Items).all()[:15]
     return render_template("index.html", title="Главная | Geekboards", items=items)
 
 
@@ -154,6 +154,11 @@ def product(product):
             item = i
     item_title = item.title
     return render_template("product.html", title=item_title, item=item)
+
+
+@app.route("/cart")
+def cart():
+    return render_template("cart.html", title="Корзина")
 
 
 if __name__ == '__main__':

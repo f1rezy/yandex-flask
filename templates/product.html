@@ -6,11 +6,11 @@
         <img class="item_img" src={{item.image}}>
     </div>
     <div class="col s5" style="margin-left: 30px;">
-        <h1 class="title">{{item.title}}</h1>
+        <h1 class="product-name">{{item.title}}</h1>
         <h2 style="font-size: 30px; margin: 25px 0 10px 0;">Описание</h2>
         <span>{{item.description}}</span>
         <div style="margin-top: 30px;">
-            <div>{{item.price}} ₽</div>
+            <div class="product-price">{{item.price}} ₽</div>
             {% if item.availability > 0 %}
                 <div>В наличии</div>
             {% else %}
@@ -22,4 +22,5 @@
         </div>
     </div>
 </div>
+<script src="/static/javascript/script.js"></script>
 {% endblock %}
