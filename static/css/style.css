@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #DCDCDC;
+}
+
+.row .col{
+  margin: 0;
+  padding: 0;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0 60px;
+  column-gap: 40px;
+  row-gap: 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex-wrap: nowrap;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.product {
+  margin: 60px 40px 100px 40px;
+}
+
+.product-name {
+  font-size: 36px;
+}
+
+.item_img {
+  border-radius: 20px;
+}
